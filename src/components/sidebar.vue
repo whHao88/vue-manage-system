@@ -5,7 +5,6 @@
     background-color="#324157"
     text-color="#bfcbd9"
     active-text-color="#20a0ff"
-    @select="handleSelect"
     unique-opened
     router
   >
@@ -29,10 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs, PropType, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useSidebarStore } from '../store/sidebar'
-
 interface IItems {
   index: string
   title: string
@@ -40,29 +35,22 @@ interface IItems {
   icon?: string
   subs?: IItems[]
 }
-// interface IProps {
-//   subs: IItems[]
-// }
+import { PropType, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useSidebarStore } from '../store/sidebar'
+const route = useRoute()
 
-const props = defineProps({
+defineProps({
   subs: {
     type: Array as PropType<IItems[]>,
     default: () => [],
   },
 })
-const { subs } = toRefs(props)
 
 const sidebar = useSidebarStore()
-
-const route = useRoute()
 const onRoutes = computed(() => {
   return route.path
 })
-
-function handleSelect(key: string, keyPath: string) {
-  console.log(key, 'key')
-  console.log(keyPath, 'keyPath')
-}
 </script>
 
 <style scoped lang="scss">

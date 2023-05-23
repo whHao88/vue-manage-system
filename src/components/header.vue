@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="logo">后台管理系统</div>
-    <HeadMenu />
+    <HeadMenu class="headMenu" />
     <div class="header-right">
       <div class="header-user-con">
         <!-- 消息中心 -->
@@ -36,8 +36,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
-// import { useSidebarStore } from '../store/sidebar'
 import { useRouter } from 'vue-router'
 import imgurl from '../assets/img/img.jpg'
 import { useTagsStore } from '../store/tags'
@@ -47,18 +45,6 @@ const tags = useTagsStore()
 
 const username: string | null = localStorage.getItem('ms_username')
 const message: number = 2
-
-// const sidebar = useSidebarStore()
-// // 侧边栏折叠
-// const collapseChage = () => {
-//   sidebar.handleCollapse()
-// }
-
-// onMounted(() => {
-//   if (document.body.clientWidth < 1500) {
-//     collapseChage()
-//   }
-// })
 
 // 用户名下拉菜单选择事件
 const router = useRouter()
@@ -79,6 +65,8 @@ const handleCommand = (command: string) => {
   height: 70px;
   font-size: 22px;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header .logo {
@@ -87,9 +75,13 @@ const handleCommand = (command: string) => {
   width: 250px;
   line-height: 70px;
 }
+.headMenu {
+  flex: 1;
+}
 .header-right {
-  float: right;
+  /* float: right; */
   padding-right: 50px;
+  width: 170px;
 }
 .header-user-con {
   display: flex;

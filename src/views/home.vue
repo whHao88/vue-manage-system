@@ -27,7 +27,6 @@ const router = useRouter()
 const route = useRoute()
 
 const onRoutes = computed(() => {
-  console.log(111)
   const path = route.path
   for (let i = 0; i < items.length; i++) {
     if (items[i].subs) {
